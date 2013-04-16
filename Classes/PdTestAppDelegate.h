@@ -1,8 +1,8 @@
 //
-//  PdTest01AppDelegate.h
-//  PdTest01
+//  PdTestAppDelegate.h
+//  PdTest02
 //
-//  Created by Richard Lawler on 10/3/10.
+//  Created by Richard Lawler on 11/22/10.
 /**
  * This software is copyrighted by Richard Lawler. 
  * The following terms (the "Standard Improved BSD License") apply to 
@@ -38,8 +38,22 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PdBase.h"
 
-@interface PdTest01AppDelegate : NSObject <UIApplicationDelegate>
-@property (nonatomic, retain) UIWindow *window;
+@class PdTestViewController;
+@class PdAudioController;
+
+// note AppDelegate supports PdReceiverDelegate protocol
+@interface PdTestAppDelegate : NSObject <UIApplicationDelegate, PdReceiverDelegate > {
+    UIWindow *window;
+    PdTestViewController *viewController;
+	PdAudioController *audioController;
+}
+
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet PdTestViewController *viewController;
+
+- (void)setAudioActive:(BOOL)active;
+
 @end
 

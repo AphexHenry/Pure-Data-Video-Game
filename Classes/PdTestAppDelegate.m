@@ -1,8 +1,8 @@
 //
-//  PdTest01AppDelegate.m
-//  PdTest01
+//  PdTestAppDelegate.m
+//  PdTest02
 //
-//  Created by Richard Lawler on 10/3/10.
+//  Created by Richard Lawler on 11/22/10.
 /**
  * This software is copyrighted by Richard Lawler. 
  * The following terms (the "Standard Improved BSD License") apply to 
@@ -37,36 +37,71 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "PdTest01AppDelegate.h"
-#import "PdTest01ViewController.h"
+#import "PdTestAppDelegate.h"
+#import "PdTestViewController.h"
 #import "PdAudioController.h"
-#import "PdBase.h"
 
-@interface PdTest01AppDelegate()
+@interface PdTestAppDelegate()
+
 @property (nonatomic, retain) PdAudioController *audioController;
+- (void) openAndRunTestPatch;
+
 @end
 
-@implementation PdTest01AppDelegate
+@implementation PdTestAppDelegate
 
 @synthesize window;
-@synthesize audioController = audioController_;
+@synthesize viewController;
+@synthesize audioController;
+
+#pragma mark -
+#pragma mark Application lifecycle
+
+extern void lrshift_tilde_setup(void);
+extern void fiddle_tilde_setup(void);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+
+	// load our audio controller
 	self.audioController = [[[PdAudioController alloc] init] autorelease];
 	[self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:NO];
-	[PdBase openFile:@"test.pd" path:[[NSBundle mainBundle] resourcePath]];
-	[self.audioController setActive:YES];
+	
+	// set AppDelegate as PdRecieverDelegate to recieve messages from Libpd
+	[PdBase setDelegate:self];
+		
+	// initialize extern lrshift~ - note this extern must be statically linked with the app; 
+	// externs can not be loaded dynamically on iOS
+	lrshift_tilde_setup();
+    fiddle_tilde_setup();
+	
+	[self openAndRunTestPatch]; 
 	[self.audioController print];
 	
-	self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-	self.window.rootViewController = [[[PdTest01ViewController alloc] init] autorelease];
+    [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
 	return YES;
 }
 
+- (void)openAndRunTestPatch {
+	// open patch located in app bundle
+	void *x = [PdBase openFile:@"LoopWithExtern.pd" path:[[NSBundle mainBundle] bundlePath]];
+	[self.audioController setActive:YES];
+}
+
+// receivePrint delegate method to receive "print" messages from Libpd
+// for simplicity we are just sending print messages to the debugging console
+- (void)receivePrint:(NSString *)message {
+	NSLog(@"(pd) %@", message);
+}
+
+- (void)setAudioActive:(BOOL)active {
+	[self.audioController setActive:active];
+}
+
 - (void)dealloc {
+    [viewController release];
+    self.window = nil;
 	self.audioController = nil;
-	self.window = nil;
     [super dealloc];
 }
 

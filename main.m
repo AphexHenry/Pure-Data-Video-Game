@@ -1,8 +1,8 @@
 //
 //  main.m
-//  PdTest01
+//  PdTest02
 //
-//  Created by Richard Lawler on 10/3/10.
+//  Created by Richard Lawler on 11/22/10.
 /**
  * This software is copyrighted by Richard Lawler. 
  * The following terms (the "Standard Improved BSD License") apply to 
@@ -38,11 +38,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PdTest01AppDelegate.h"
 
 int main(int argc, char *argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([PdTest01AppDelegate class]));
+    int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
     return retVal;
 }

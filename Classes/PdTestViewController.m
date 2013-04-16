@@ -1,8 +1,8 @@
 //
-//  PdTest01ViewController.h
-//  PdTest01
+//  PdTestViewController.m
+//  PdTest02
 //
-//  Created by Richard Lawler on 10/3/10.
+//  Created by Richard Lawler on 11/22/10.
 /**
  * This software is copyrighted by Richard Lawler. 
  * The following terms (the "Standard Improved BSD License") apply to 
@@ -37,11 +37,45 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <UIKit/UIKit.h>
+#import "PdTestViewController.h"
+#import "PdTestAppDelegate.h"
+#import "PdBase.h"
 
-@interface PdTest01ViewController : UIViewController {
+@implementation PdTestViewController
 
+// outlets
+@synthesize outputLeftToggle;
+@synthesize outputRightToggle;
+@synthesize playToggle;
+
+
+- (void) viewWillAppear:(BOOL)animated {
+	[self playStateChanged];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
+- (void)dealloc {
+	[outputLeftToggle release];
+	[outputRightToggle release];
+	[playToggle release];
+    [super dealloc];
+}
+
+- (IBAction)outputLeftChanged {
+	[PdBase sendFloat:(outputLeftToggle.on ? 1. : 0.) toReceiver: @"left" ];
+}
+
+- (IBAction)outputRightChanged {
+	[PdBase sendFloat:(outputRightToggle.on ? 1. : 0.) toReceiver: @"right" ];
+}
+
+- (IBAction)playStateChanged {
+	PdTestAppDelegate *appDelegate = (PdTestAppDelegate *) [[UIApplication sharedApplication] delegate];
+	BOOL active = playToggle.on;
+	[appDelegate setAudioActive:active];
 }
 
 @end
-

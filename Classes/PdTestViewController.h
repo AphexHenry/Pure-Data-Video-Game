@@ -1,8 +1,8 @@
 //
-//  PdTest01ViewController.m
-//  PdTest01
+//  PdTestViewController.h
+//  PdTest02
 //
-//  Created by Richard Lawler on 10/3/10.
+//  Created by Richard Lawler on 11/22/10.
 /**
  * This software is copyrighted by Richard Lawler. 
  * The following terms (the "Standard Improved BSD License") apply to 
@@ -37,16 +37,21 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "PdTest01ViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation PdTest01ViewController
-
-- (void)viewDidLoad {
-	self.view.backgroundColor = [UIColor blueColor];
+@interface PdTestViewController : UIViewController {
+	IBOutlet UISwitch *outputLeftToggle;
+	IBOutlet UISwitch *outputRightToggle;
+	IBOutlet UISwitch *playToggle;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
-}
+@property (nonatomic, retain) IBOutlet UISwitch *outputLeftToggle;
+@property (nonatomic, retain) IBOutlet UISwitch *outputRightToggle;
+@property (nonatomic, retain) IBOutlet UISwitch *playToggle;
+
+- (IBAction) outputLeftChanged;
+- (IBAction) outputRightChanged;
+- (IBAction) playStateChanged;
 
 @end
+
