@@ -43,11 +43,13 @@
 	IBOutlet UISwitch *outputLeftToggle;
 	IBOutlet UISwitch *outputRightToggle;
 	IBOutlet UISwitch *playToggle;
+    IBOutlet UILabel *frequencySlider;
 }
 
 @property (nonatomic, retain) IBOutlet UISwitch *outputLeftToggle;
 @property (nonatomic, retain) IBOutlet UISwitch *outputRightToggle;
 @property (nonatomic, retain) IBOutlet UISwitch *playToggle;
+@property (nonatomic, retain) IBOutlet UILabel *frequencySlider;
 
 - (IBAction) outputLeftChanged;
 - (IBAction) outputRightChanged;

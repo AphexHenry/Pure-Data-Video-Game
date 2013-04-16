@@ -15,10 +15,10 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* PdTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* PdTestViewController.m */; };
 		9CD053AE171D899E00673BAA /* fiddle~.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CD053AD171D899E00673BAA /* fiddle~.c */; };
+		9CD053B5171D9C0900673BAA /* SampleListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD053B4171D9C0900673BAA /* SampleListener.m */; };
 		DC0C300E125D15FC008B6389 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C300D125D15FC008B6389 /* Foundation.framework */; };
 		DC0C3012125D160B008B6389 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C3011125D160B008B6389 /* UIKit.framework */; };
 		DC0C3016125D1614008B6389 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C3015125D1614008B6389 /* CoreGraphics.framework */; };
-		DC3B19C21294789B001C3597 /* Banjo_B3.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC3B19C11294789B001C3597 /* Banjo_B3.wav */; };
 		DC70C562129B16FB006CC055 /* LoopWithExtern.pd in Resources */ = {isa = PBXBuildFile; fileRef = DC70C561129B16FB006CC055 /* LoopWithExtern.pd */; };
 		DC70C5FC129B28F8006CC055 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC70C5FB129B28F8006CC055 /* ReadMe.txt */; };
 		DCCC7CDF125C3E0F002CF6AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCC7CDE125C3E0F002CF6AC /* AudioToolbox.framework */; };
@@ -64,10 +64,11 @@
 		32CA4F630368D1EE00C91783 /* PdVideoGame_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdVideoGame_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* PdVideoGame-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PdVideoGame-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9CD053AD171D899E00673BAA /* fiddle~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "fiddle~.c"; path = "../libpd/pure-data/extra/fiddle~/fiddle~.c"; sourceTree = "<group>"; };
+		9CD053B3171D9C0900673BAA /* SampleListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleListener.h; sourceTree = "<group>"; };
+		9CD053B4171D9C0900673BAA /* SampleListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleListener.m; sourceTree = "<group>"; };
 		DC0C300D125D15FC008B6389 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DC0C3011125D160B008B6389 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC0C3015125D1614008B6389 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DC3B19C11294789B001C3597 /* Banjo_B3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Banjo_B3.wav; sourceTree = SOURCE_ROOT; };
 		DC70C561129B16FB006CC055 /* LoopWithExtern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoopWithExtern.pd; sourceTree = "<group>"; };
 		DC70C5FB129B28F8006CC055 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		DCCC7CDE125C3E0F002CF6AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -100,6 +101,8 @@
 				1D3623250D0F684500981E51 /* PdTestAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* PdTestViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* PdTestViewController.m */,
+				9CD053B3171D9C0900673BAA /* SampleListener.h */,
+				9CD053B4171D9C0900673BAA /* SampleListener.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -149,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				DC70C561129B16FB006CC055 /* LoopWithExtern.pd */,
-				DC3B19C11294789B001C3597 /* Banjo_B3.wav */,
 				2899E5210DE3E06400AC0155 /* PdTestViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* PdVideoGame-Info.plist */,
@@ -257,7 +259,6 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* PdTestViewController.xib in Resources */,
-				DC3B19C21294789B001C3597 /* Banjo_B3.wav in Resources */,
 				DC70C562129B16FB006CC055 /* LoopWithExtern.pd in Resources */,
 				DC70C5FC129B28F8006CC055 /* ReadMe.txt in Resources */,
 			);
@@ -275,6 +276,7 @@
 				28D7ACF80DDB3853001CB0EB /* PdTestViewController.m in Sources */,
 				DCD6ACC6128B38B100C61BBE /* lrshift~.c in Sources */,
 				9CD053AE171D899E00673BAA /* fiddle~.c in Sources */,
+				9CD053B5171D9C0900673BAA /* SampleListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

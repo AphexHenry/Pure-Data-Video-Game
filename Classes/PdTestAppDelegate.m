@@ -40,6 +40,7 @@
 #import "PdTestAppDelegate.h"
 #import "PdTestViewController.h"
 #import "PdAudioController.h"
+#import "PdDispatcher.h"
 
 @interface PdTestAppDelegate()
 
@@ -57,7 +58,6 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-extern void lrshift_tilde_setup(void);
 extern void fiddle_tilde_setup(void);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
@@ -67,11 +67,12 @@ extern void fiddle_tilde_setup(void);
 	[self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:NO];
 	
 	// set AppDelegate as PdRecieverDelegate to recieve messages from Libpd
-	[PdBase setDelegate:self];
+//	[PdBase setDelegate:self];
+    
+    [PdBase setDelegate:[[PdDispatcher alloc] init]];
 		
 	// initialize extern lrshift~ - note this extern must be statically linked with the app; 
 	// externs can not be loaded dynamically on iOS
-	lrshift_tilde_setup();
     fiddle_tilde_setup();
 	
 	[self openAndRunTestPatch]; 

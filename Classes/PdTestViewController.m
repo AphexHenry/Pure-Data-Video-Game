@@ -40,6 +40,7 @@
 #import "PdTestViewController.h"
 #import "PdTestAppDelegate.h"
 #import "PdBase.h"
+#import "SampleListener.h"
 
 @implementation PdTestViewController
 
@@ -47,10 +48,22 @@
 @synthesize outputLeftToggle;
 @synthesize outputRightToggle;
 @synthesize playToggle;
+@synthesize frequencySlider;
 
 
 - (void) viewWillAppear:(BOOL)animated {
 	[self playStateChanged];
+    
+//    frequencySlider = [[[UISlider alloc] initWithFrame:CGRectMake(45, 0, 230, 55)] autorelease];
+//    frequencySlider.minimumValue = 1;
+//    frequencySlider.maximumValue = 50;
+//    frequencySlider.value = 5;
+//    [frequencySlider setContinuous:YES];
+    
+    PdDispatcher *dispatcher = (PdDispatcher *)[PdBase delegate];
+    SampleListener *listener = [[SampleListener alloc] initWithLabel:frequencySlider];
+    [dispatcher addListener:listener forSource:@"freq"];
+    [listener release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -61,6 +74,7 @@
 	[outputLeftToggle release];
 	[outputRightToggle release];
 	[playToggle release];
+    [frequencySlider release];
     [super dealloc];
 }
 
